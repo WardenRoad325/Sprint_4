@@ -4,6 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 public class FaqPage {
     private WebDriver driver;
@@ -17,19 +22,16 @@ public class FaqPage {
     }
 
     public void scrollToAccordion() {
-        WebElement faqElement = driver.findElement(By.cssSelector(".accordion"));
+        WebElement faqElement = driver.findElement(By.cssSelector("div[data-accordion-component='Accordion']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", faqElement);
 
     }
 
-    public void clickAccordionItem(int index) {
-        By accordionItemLocator = By.cssSelector(".accordion__item");
-        driver.findElements(accordionItemLocator).get(index).click();
-    }
-
-    public String getAccordionItemText(int index) {
-        By accordionPanelLocator = By.cssSelector(".accordion__panel");
-        return driver.findElements(accordionPanelLocator).get(index).getText();
+    public FaqPage checkImportantQuestionsText(int paramSelect, int paramContent, String changed) {
+        driver.findElement(By.xpath(".//div[@id='accordion__heading-" + paramSelect + "']")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(".//div[@aria-labelledby='accordion__heading-" + paramContent + "']"), changed));
+        return new FaqPage(driver);
     }
 }
 

@@ -38,10 +38,14 @@ public class OrderScooterTest {
 
     @Test
     @Parameters({
-            "Василий, Петров, Улица таганская 13А, 89187430641"
+            "Василий, Петров, Улица таганская 13А, 89187430641",
+            "Андрей, Васильевич, Улица Мира 122, 89282307504",
+            "Елена, Сидорова, Первомайская 5, 89051234567",
+            "Иван, Иванов, Ленина 25, 89998887766",
+            "Ольга, Смирнова, Профсоюзная 8, 89601112233"
 
     })
-    public void orderScooterTest(String name, String surname, String address, String phone) {
+    public void orderScooterTestFromUpButton(String name, String surname, String address, String phone) {
         userDetailsRent.orderButtonClick();
         userDetailsRent.enterOrderName(name);
         userDetailsRent.enterOrderSurname(surname);
@@ -62,10 +66,15 @@ public class OrderScooterTest {
     }
     @Test
     @Parameters({
-            "Мария, Сидорова, Улица Гагарина 42, 89162345678"
+            "Мария, Сидорова, Улица Гагарина 42, 89162345678",
+            "Андрей, Козлов, Пушкинская 10, 89172345678",
+            "Мария, Федорова, Гагарина 7, 89993332211",
+            "Сергей, Морозов, Московская 3, 89001112233",
+            "Анна, Павлова, Красноармейская 12, 89199998877",
+            "Дмитрий, Григорьев, Лермонтовская 15, 89005557788"
 
     })
-    public void orderScooterTestFromSecondButton(String name, String surname, String address, String phone) {
+    public void orderScooterTestFromDownButton(String name, String surname, String address, String phone) {
         userDetailsRent.scrollToOrderButtonSecond();
         userDetailsRent.orderButtonSecond();
         userDetailsRent.enterOrderName(name);
